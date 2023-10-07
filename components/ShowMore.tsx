@@ -1,0 +1,62 @@
+// 'use client';
+
+// import { useRouter } from 'next/navigation';
+
+// import { ShowMoreProps } from '@/types';
+// import { updateSearchParams } from '@/utils';
+// import CustomButton from './CustomButton';
+
+// const ShowMore = ({ pageNumber, isNext }: ShowMoreProps) => {
+//   const router = useRouter();
+
+//   const handleNavigation = () => {
+//     // Calculate the new limit based on the page number and navigation type
+//     const newLimit = (pageNumber + 1) * 10;
+
+//     // Update the "limit" search parameter in the URL with the new value
+//     const newPathname = updateSearchParams('limit', `${newLimit}`);
+
+//     router.push(newPathname);
+//   };
+
+//   return (
+//     <div className='w-full gap-5 mt-10 flex-center'>
+//       {!isNext && (
+//         <CustomButton
+//           btnType='button'
+//           title='Show More'
+//           containerStyles='bg-primary-blue rounded-full text-white'
+//           handleClick={handleNavigation}
+//         />
+//       )}
+//     </div>
+//   );
+// };
+
+// export default ShowMore;
+'use client';
+
+import CustomButton from './CustomButton';
+
+const ShowMore = ({ pageNumber, isNext, setLimit }: any) => {
+  const handleNavigation = () => {
+    const newLimit = (pageNumber + 1) * 10;
+
+    setLimit(newLimit);
+  };
+
+  return (
+    <div className='w-full gap-5 mt-10 flex-center'>
+      {!isNext && (
+        <CustomButton
+          btnType='button'
+          title='Show More'
+          containerStyles='bg-primary-blue rounded-full text-white'
+          handleClick={handleNavigation}
+        />
+      )}
+    </div>
+  );
+};
+
+export default ShowMore;
